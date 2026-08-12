@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.jai.quiz_service.model.QuestionWrapper;
+import com.jai.quiz_service.model.QuizDto;
 import com.jai.quiz_service.model.Response;
 import com.jai.quiz_service.service.QuizService;
 
@@ -18,8 +19,8 @@ public class QuizController {
     QuizService quizService;
 
     @PostMapping("create")
-    public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title){
-        return quizService.createQuiz(category, numQ, title);
+    public ResponseEntity<String> createQuiz(@RequestBody QuizDto quiDto){
+        return quizService.createQuiz(quiDto.getCategoryName(), quiDto.getNumQuestions(), quiDto.getTitle());
     }
     @GetMapping("get/{id}")
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable Integer id){

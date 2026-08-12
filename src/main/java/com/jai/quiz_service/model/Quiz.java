@@ -27,25 +27,25 @@ public class Quiz {
 		this.title = title;
 	}
 
-	public List<Question> getQuestions() {
-		return questions;
-	}
+//	public List<Question> getQuestions() {
+//		return questions;
+//	}
+//
+//	public void setQuestions(List<Question> questions) {
+//		this.questions = questions;
+//	}
 
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
-	}
-
-	@Override
-	public String toString() {
-		return "Quiz [id=" + id + ", title=" + title + ", questions=" + questions + "]";
-	}
+//	@Override
+//	public String toString() {
+////		return "Quiz [id=" + id + ", title=" + title + ", questions=" + questions + "]";
+//	}
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
 
-    @ManyToMany
-    private List<Question> questions;
+//    @ManyToMany
+//    private List<Question> questions;
 
 }
