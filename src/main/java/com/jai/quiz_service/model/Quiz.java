@@ -2,16 +2,24 @@ package com.jai.quiz_service.model;
 
 import java.util.List;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Quiz {
 
-    public Integer getId() {
+    public List<Integer> getQuestionIds() {
+		return questionIds;
+	}
+
+	public void setQuestionIds(List<Integer> questionIds) {
+		this.questionIds = questionIds;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
@@ -45,7 +53,7 @@ public class Quiz {
     private Integer id;
     private String title;
 
-//    @ManyToMany
-//    private List<Question> questions;
+    @ElementCollection
+    private List<Integer> questionIds;
 
 }
