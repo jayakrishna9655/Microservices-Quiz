@@ -16,13 +16,13 @@ import com.jai.quiz_service.model.Response;
 @FeignClient("QUESTION-SERVICE")
 public interface quizInterface {
 
-	@GetMapping("/generate")
+	@GetMapping("question/generate")
     public ResponseEntity<List<Integer>> getQuestionsForQuiz(@RequestParam String category,@RequestParam Integer numOfQuestions);
     
-    @PostMapping("/getQuetion")
+    @PostMapping("question/getQuetion")
     public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Integer> questionId);
     
-    @PostMapping("/getScore")
+    @PostMapping("question/getScore")
     public ResponseEntity<Integer> getScore(@RequestBody List<Response> responses);
 	
 }

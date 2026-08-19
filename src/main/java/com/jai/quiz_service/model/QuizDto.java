@@ -2,6 +2,10 @@ package com.jai.quiz_service.model;
 
 public class QuizDto {
 
+	public QuizDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public String getCategoryName() {
 		return categoryName;
 	}
