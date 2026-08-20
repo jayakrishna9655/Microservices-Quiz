@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jai.quiz_service.controller.quizInterface;
 import com.jai.quiz_service.dao.QuizDao;
@@ -39,25 +40,19 @@ public class QuizService {
 
     }
 
+    @Transactional
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Integer id) {
         Quiz quiz = quizDao.findById(id).get();
-        List<Integer> questionId = quiz.getQuestionIds();
+        List<Integer> questionId = new ArrayList<>(quiz.getQuestionIds());
         ResponseEntity<List<QuestionWrapper>> questions = quizinterface.getQuestionsFromId(questionId);
         return questions;
 
     }
 
     public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses) {
-//        Quiz quiz = quizDao.findById(id).get();
-//        List<Question> questions = quiz.getQuestions();
-        int right = 0;
-//        int i = 0;
-//        for(Response response : responses){
-//            if(response.getResponse().equals(questions.get(i).getRightAnswer()))
-//                right++;
-//
-//            i++;
-//        }
-        return new ResponseEntity<>(right, HttpStatus.OK);
+
+    	ResponseEntity<Integer> score = quizinterface.getScore(responses);
+    	
+        return score;
     }
 }
